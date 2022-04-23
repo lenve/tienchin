@@ -49,6 +49,13 @@
             <artifactId>tienchin-framework</artifactId>
         </dependency>
 
+        <!--渠道管理模块-->
+
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-channel</artifactId>
+        </dependency>
+
         <!-- 定时任务-->
         <dependency>
             <groupId>org.javaboy</groupId>
@@ -59,6 +66,22 @@
         <dependency>
             <groupId>org.javaboy</groupId>
             <artifactId>tienchin-generator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
     </dependencies>

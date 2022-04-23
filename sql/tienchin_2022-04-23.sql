@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.26)
 # Database: tienchin
-# Generation Time: 2022-04-23 01:34:39 +0000
+# Generation Time: 2022-04-23 08:19:46 +0000
 # ************************************************************
 
 
@@ -349,7 +349,21 @@ VALUES
 	(107,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','验证码错误','2022-04-23 08:21:15'),
 	(108,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 08:21:18'),
 	(109,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 09:21:25'),
-	(110,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 09:21:41');
+	(110,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 09:21:41'),
+	(111,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 11:40:56'),
+	(112,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 15:12:34'),
+	(113,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','退出成功','2022-04-23 16:02:47'),
+	(114,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 16:02:51'),
+	(115,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','退出成功','2022-04-23 16:02:57'),
+	(116,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','用户不存在/密码错误','2022-04-23 16:03:03'),
+	(117,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 16:03:11'),
+	(118,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','退出成功','2022-04-23 16:04:48'),
+	(119,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 16:04:52'),
+	(120,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','退出成功','2022-04-23 16:05:20'),
+	(121,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','用户不存在/密码错误','2022-04-23 16:05:27'),
+	(122,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 16:05:33'),
+	(123,'javaboy','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','退出成功','2022-04-23 16:06:00'),
+	(124,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 16:06:04');
 
 /*!40000 ALTER TABLE `sys_logininfor` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -611,7 +625,26 @@ VALUES
 	(111,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"peoples\",\"orderNum\":4,\"menuName\":\"活动管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"activity\",\"component\":\"tienchin/activity/index\",\"children\":[],\"createTime\":1617216998000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2003,\"menuType\":\"C\",\"perms\":\"tienchin:activity:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:16:40'),
 	(112,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"list\",\"orderNum\":5,\"menuName\":\"课程管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"course\",\"component\":\"tienchin/course/index\",\"children\":[],\"createTime\":1617243256000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2004,\"menuType\":\"C\",\"perms\":\"tienchin:course:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:17:09'),
 	(113,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"chart\",\"orderNum\":6,\"menuName\":\"统计分析\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"analysis\",\"component\":\"tienchin/analysis/index\",\"children\":[],\"createTime\":1618438016000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2006,\"menuType\":\"C\",\"perms\":\"tienchin:analysis:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:18:00'),
-	(114,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"row\",\"orderNum\":8,\"menuName\":\"渠道管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"channel\",\"component\":\"tienchin/channel/index\",\"children\":[],\"createTime\":1650552025000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2008,\"menuType\":\"C\",\"perms\":\"tienchin:channel:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 09:25:13');
+	(114,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"row\",\"orderNum\":8,\"menuName\":\"渠道管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"channel\",\"component\":\"tienchin/channel/index\",\"children\":[],\"createTime\":1650552025000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2008,\"menuType\":\"C\",\"perms\":\"tienchin:channel:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 09:25:13'),
+	(115,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"channelName\":\"公众号推广\",\"remark\":\"无\",\"channelId\":5,\"status\":0}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:28:30'),
+	(116,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:32:37.291317000\",\"channelName\":\"小程序推广\",\"remark\":\"哈哈\",\"updateTime\":\"2022-04-23T15:32:37.291340000\",\"channelId\":6,\"status\":1}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:32:37'),
+	(117,'渠道管理',2,'org.javaboy.web.controller.channel.ChannelController.edit()','PUT',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:32:37\",\"updateBy\":\"admin\",\"channelName\":\"小程序推广\",\"remark\":\"哈哈\",\"updateTime\":\"2022-04-23T15:43:10.696303000\",\"channelId\":6,\"status\":0}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:43:10'),
+	(118,'渠道管理',2,'org.javaboy.web.controller.channel.ChannelController.edit()','PUT',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"updateBy\":\"admin\",\"channelName\":\"公众号推广\",\"remark\":\"无\",\"updateTime\":\"2022-04-23T15:43:25.483379000\",\"channelId\":5,\"status\":0}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:43:25'),
+	(119,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:22.730498000\",\"channelName\":\"1\",\"updateTime\":\"2022-04-23T15:52:22.730521000\",\"channelId\":7,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:22'),
+	(120,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:27.385589000\",\"channelName\":\"2\",\"updateTime\":\"2022-04-23T15:52:27.385604000\",\"channelId\":8,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:27'),
+	(121,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:32.218497000\",\"channelName\":\"3\",\"updateTime\":\"2022-04-23T15:52:32.218510000\",\"channelId\":9,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:32'),
+	(122,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:36.517940000\",\"channelName\":\"4\",\"updateTime\":\"2022-04-23T15:52:36.517953000\",\"channelId\":10,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:36'),
+	(123,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:40.315709000\",\"channelName\":\"5\",\"updateTime\":\"2022-04-23T15:52:40.315722000\",\"channelId\":11,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:40'),
+	(124,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'admin',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"admin\",\"createTime\":\"2022-04-23T15:52:45.340749000\",\"channelName\":\"6\",\"updateTime\":\"2022-04-23T15:52:45.340768000\",\"channelId\":12,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 15:52:45'),
+	(125,'渠道管理',3,'org.javaboy.web.controller.channel.ChannelController.remove()','DELETE',1,'admin',NULL,'/tienchin/channel/10','127.0.0.1','内网IP','{channelIds=10}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:00:59'),
+	(126,'渠道管理',3,'org.javaboy.web.controller.channel.ChannelController.remove()','DELETE',1,'admin',NULL,'/tienchin/channel/8,9','127.0.0.1','内网IP','{channelIds=8,9}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:01:06'),
+	(127,'渠道管理',3,'org.javaboy.web.controller.channel.ChannelController.remove()','DELETE',1,'admin',NULL,'/tienchin/channel/11','127.0.0.1','内网IP','{channelIds=11}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:01:11'),
+	(128,'渠道管理',3,'org.javaboy.web.controller.channel.ChannelController.remove()','DELETE',1,'admin',NULL,'/tienchin/channel/12','127.0.0.1','内网IP','{channelIds=12}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:01:14'),
+	(129,'用户管理',1,'org.javaboy.web.controller.system.SysUserController.add()','POST',1,'admin',NULL,'/system/user','127.0.0.1','内网IP','{\"phonenumber\":\"13222222222\",\"admin\":false,\"password\":\"$2a$10$Ly7592NawJoGLSaZxiHK1ODqz5BFC2z77rz7kIp4bGqBeeGaBdtQe\",\"postIds\":[1],\"email\":\"111@qq.com\",\"nickName\":\"javaboy\",\"sex\":\"0\",\"deptId\":100,\"params\":{},\"userName\":\"javaboy\",\"userId\":100,\"createBy\":\"admin\",\"roleIds\":[2],\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:02:13'),
+	(130,'角色管理',2,'org.javaboy.web.controller.system.SysRoleController.edit()','PUT',1,'admin',NULL,'/system/role','127.0.0.1','内网IP','{\"flag\":false,\"roleId\":2,\"admin\":false,\"remark\":\"普通角色\",\"dataScope\":\"2\",\"delFlag\":\"0\",\"params\":{},\"roleSort\":\"2\",\"deptCheckStrictly\":true,\"createTime\":1650540564000,\"updateBy\":\"admin\",\"menuCheckStrictly\":true,\"roleKey\":\"common\",\"roleName\":\"普通角色\",\"menuIds\":[2008,3049,3050,1,100,1001,1002,1003,1004,1005,1006,1007,101,1008,1009,1010,1011,1012,102,1013,1014,1015,1016,103,1017,1018,1019,1020,104,1021,1022,1023,1024,1025,105,1026,1027,1028,1029,1030,106,1031,1032,1033,1034,1035,107,1036,1037,1038,1039,108,500,1040,1041,1042,501,1043,1044,1045,2,109,1046,1047,1048,110,1049,1050,1051,1052,1053,1054,111,112,113,3,114,115,1055,1056,1058,1057,1059,1060,116,4],\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:02:41'),
+	(131,'渠道管理',1,'org.javaboy.web.controller.channel.ChannelController.add()','POST',1,'javaboy',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"javaboy\",\"createTime\":\"2022-04-23T16:03:39.739159000\",\"channelName\":\"1\",\"remark\":\"1\",\"updateTime\":\"2022-04-23T16:03:39.739183000\",\"channelId\":13,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:03:39'),
+	(132,'角色管理',2,'org.javaboy.web.controller.system.SysRoleController.edit()','PUT',1,'admin',NULL,'/system/role','127.0.0.1','内网IP','{\"flag\":false,\"roleId\":2,\"admin\":false,\"remark\":\"普通角色\",\"dataScope\":\"2\",\"delFlag\":\"0\",\"params\":{},\"roleSort\":\"2\",\"deptCheckStrictly\":true,\"createTime\":1650540564000,\"updateBy\":\"admin\",\"menuCheckStrictly\":true,\"roleKey\":\"common\",\"roleName\":\"普通角色\",\"menuIds\":[2008,3049,3050,3051,1,100,1001,1002,1003,1004,1005,1006,1007,101,1008,1009,1010,1011,1012,102,1013,1014,1015,1016,103,1017,1018,1019,1020,104,1021,1022,1023,1024,1025,105,1026,1027,1028,1029,1030,106,1031,1032,1033,1034,1035,107,1036,1037,1038,1039,108,500,1040,1041,1042,501,1043,1044,1045,2,109,1046,1047,1048,110,1049,1050,1051,1052,1053,1054,111,112,113,3,114,115,1055,1056,1058,1057,1059,1060,116,4],\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:05:16'),
+	(133,'渠道管理',2,'org.javaboy.web.controller.channel.ChannelController.edit()','PUT',1,'javaboy',NULL,'/tienchin/channel/','127.0.0.1','内网IP','{\"createBy\":\"javaboy\",\"createTime\":\"2022-04-23T16:03:40\",\"updateBy\":\"javaboy\",\"channelName\":\"2\",\"remark\":\"2\",\"updateTime\":\"2022-04-23T16:05:55.456727000\",\"channelId\":13,\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 16:05:55');
 
 /*!40000 ALTER TABLE `sys_oper_log` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -679,7 +712,7 @@ LOCK TABLES `sys_role` WRITE;
 INSERT INTO `sys_role` (`role_id`, `role_name`, `role_key`, `role_sort`, `data_scope`, `menu_check_strictly`, `dept_check_strictly`, `status`, `del_flag`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`)
 VALUES
 	(1,'超级管理员','admin',1,'1',1,1,'0','0','admin','2022-04-21 19:29:24','',NULL,'超级管理员'),
-	(2,'普通角色','common',2,'2',1,1,'0','0','admin','2022-04-21 19:29:24','',NULL,'普通角色');
+	(2,'普通角色','common',2,'2',1,1,'0','0','admin','2022-04-21 19:29:24','admin','2022-04-23 16:05:16','普通角色');
 
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -748,7 +781,6 @@ VALUES
 	(2,116),
 	(2,500),
 	(2,501),
-	(2,1000),
 	(2,1001),
 	(2,1002),
 	(2,1003),
@@ -808,7 +840,11 @@ VALUES
 	(2,1057),
 	(2,1058),
 	(2,1059),
-	(2,1060);
+	(2,1060),
+	(2,2008),
+	(2,3049),
+	(2,3050),
+	(2,3051);
 
 /*!40000 ALTER TABLE `sys_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -847,8 +883,9 @@ LOCK TABLES `sys_user` WRITE;
 
 INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`)
 VALUES
-	(1,103,'admin','TienChin','00','ry@163.com','15888888888','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-23 09:21:41','admin','2022-04-21 19:29:24','','2022-04-23 09:21:41','管理员'),
-	(2,105,'ry','TienChin','00','ry@qq.com','15666666666','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-21 19:29:24','admin','2022-04-21 19:29:24','',NULL,'测试员');
+	(1,103,'admin','TienChin','00','ry@163.com','15888888888','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-23 16:06:05','admin','2022-04-21 19:29:24','','2022-04-23 16:06:04','管理员'),
+	(2,105,'ry','TienChin','00','ry@qq.com','15666666666','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-21 19:29:24','admin','2022-04-21 19:29:24','',NULL,'测试员'),
+	(100,100,'javaboy','javaboy','00','111@qq.com','13222222222','0','','$2a$10$Ly7592NawJoGLSaZxiHK1ODqz5BFC2z77rz7kIp4bGqBeeGaBdtQe','0','0','127.0.0.1','2022-04-23 16:05:34','admin','2022-04-23 16:02:13','','2022-04-23 16:05:33',NULL);
 
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -871,7 +908,8 @@ LOCK TABLES `sys_user_post` WRITE;
 INSERT INTO `sys_user_post` (`user_id`, `post_id`)
 VALUES
 	(1,1),
-	(2,2);
+	(2,2),
+	(100,1);
 
 /*!40000 ALTER TABLE `sys_user_post` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -894,9 +932,45 @@ LOCK TABLES `sys_user_role` WRITE;
 INSERT INTO `sys_user_role` (`user_id`, `role_id`)
 VALUES
 	(1,1),
-	(2,2);
+	(2,2),
+	(100,2);
 
 /*!40000 ALTER TABLE `sys_user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tienchin_channel
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tienchin_channel`;
+
+CREATE TABLE `tienchin_channel` (
+  `channel_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `channel_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '渠道名称',
+  `status` int(11) DEFAULT '0' COMMENT '渠道状态 0可用；1禁用',
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `create_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `update_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`channel_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `tienchin_channel` WRITE;
+/*!40000 ALTER TABLE `tienchin_channel` DISABLE KEYS */;
+
+INSERT INTO `tienchin_channel` (`channel_id`, `channel_name`, `status`, `remark`, `create_time`, `update_time`, `create_by`, `update_by`)
+VALUES
+	(1,'百度搜索',0,'无','2022-04-23 15:12:13','2022-04-23 15:12:23','admin','admin'),
+	(2,'抖音短视频',0,'无','2022-04-23 15:12:13','2022-04-23 15:12:23','admin','admin'),
+	(3,'线下地推',0,'无','2022-04-23 15:12:13','2022-04-23 15:12:23','admin','admin'),
+	(4,'KOL渠道',0,'无','2022-04-23 15:12:13','2022-04-23 15:12:23','admin','admin'),
+	(5,'公众号推广',0,'无',NULL,'2022-04-23 15:43:25','admin','admin'),
+	(6,'小程序推广',0,'哈哈','2022-04-23 15:32:37','2022-04-23 15:43:11','admin','admin'),
+	(7,'1',0,NULL,'2022-04-23 15:52:23','2022-04-23 15:52:23','admin',NULL),
+	(13,'2',0,'2','2022-04-23 16:03:40','2022-04-23 16:05:55','javaboy','javaboy');
+
+/*!40000 ALTER TABLE `tienchin_channel` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
