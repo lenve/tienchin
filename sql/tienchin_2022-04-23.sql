@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.26)
 # Database: tienchin
-# Generation Time: 2022-04-21 15:01:32 +0000
+# Generation Time: 2022-04-23 01:34:39 +0000
 # ************************************************************
 
 
@@ -341,7 +341,15 @@ INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `login_location`
 VALUES
 	(100,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','验证码错误','2022-04-21 20:02:43'),
 	(101,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-21 20:02:46'),
-	(102,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-21 22:06:28');
+	(102,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-21 22:06:28'),
+	(103,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','验证码已失效','2022-04-21 23:11:50'),
+	(104,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-21 23:11:54'),
+	(105,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 08:09:02'),
+	(106,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','验证码错误','2022-04-23 08:21:12'),
+	(107,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','1','验证码错误','2022-04-23 08:21:15'),
+	(108,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 08:21:18'),
+	(109,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 09:21:25'),
+	(110,'admin','127.0.0.1','内网IP','Chrome 10','Mac OS X','0','登录成功','2022-04-23 09:21:41');
 
 /*!40000 ALTER TABLE `sys_logininfor` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -380,10 +388,10 @@ LOCK TABLES `sys_menu` WRITE;
 
 INSERT INTO `sys_menu` (`menu_id`, `menu_name`, `parent_id`, `order_num`, `path`, `component`, `query`, `is_frame`, `is_cache`, `menu_type`, `visible`, `status`, `perms`, `icon`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`)
 VALUES
-	(1,'系统管理',0,8,'system',NULL,'',1,0,'M','0','0','','system','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','系统管理目录'),
+	(1,'系统管理',0,20,'system',NULL,'',1,0,'M','0','0','','system','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','系统管理目录'),
 	(2,'系统监控',1,10,'monitor',NULL,'',1,0,'M','0','0','','monitor','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44','系统监控目录'),
 	(3,'系统工具',1,11,'tool',NULL,'',1,0,'M','0','0','','tool','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44','系统工具目录'),
-	(4,'天勤官网',0,9,'http://tienchin.vip',NULL,'',0,0,'M','0','0','','guide','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','TienChin官网地址'),
+	(4,'天勤官网',0,21,'http://tienchin.vip',NULL,'',0,0,'M','0','0','','guide','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','TienChin官网地址'),
 	(100,'用户管理',1,1,'user','system/user/index','',1,0,'C','0','0','system:user:list','user','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','用户管理菜单'),
 	(101,'角色管理',1,2,'role','system/role/index','',1,0,'C','0','0','system:role:list','peoples','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','角色管理菜单'),
 	(102,'菜单管理',1,3,'menu','system/menu/index','',1,0,'C','0','0','system:menu:list','tree-table','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','菜单管理菜单'),
@@ -470,6 +478,7 @@ VALUES
 	(2005,'线索管理',0,1,'clue','tienchin/clue/index',NULL,1,0,'C','0','0','tienchin:clue:list','checkbox','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44','线索管理菜单'),
 	(2006,'统计分析',0,6,'analysis','tienchin/analysis/index',NULL,1,0,'C','0','0','tienchin:analysis:list','chart','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
 	(2007,'转派管理',0,7,'transfer','tienchin/transfer/index',NULL,1,0,'C','0','0','tienchin:transfer:list','example','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
+	(2008,'渠道管理',0,8,'channel','tienchin/channel/index',NULL,1,0,'C','0','0','tienchin:channel:list','row','admin','2022-04-21 22:40:25','admin','2022-04-23 09:25:13','渠道管理'),
 	(3001,'商机管理查询',2001,1,'',NULL,NULL,1,0,'F','0','0','business:business:query','#','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
 	(3002,'商机管理新增',2001,2,'',NULL,NULL,1,0,'F','0','0','business:business:add','#','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
 	(3003,'商机管理查看',2001,4,'',NULL,NULL,1,0,'F','0','0','business:business:info','#','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
@@ -512,12 +521,16 @@ VALUES
 	(3040,'线索跟进记录',2005,9,'',NULL,NULL,1,0,'F','0','0','tienchin:record:list','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
 	(3041,'线索管理批量添加',2005,10,'',NULL,NULL,1,0,'F','0','0','tienchin:clue:batchAdd','#','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
 	(3042,'线索捞取',2005,11,'clues:clue:gain',NULL,NULL,1,0,'F','0','0','tienchin:clue:gain','#','admin','2022-04-21 22:40:25','admin','2022-04-21 22:40:44',''),
-	(3043,'首页基础数据查询',0,10,'',NULL,NULL,1,0,'F','1','0','indexHome:baseQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
-	(3044,'首页今日简报',0,11,'',NULL,NULL,1,0,'F','1','0','indexHome:todayQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
-	(3045,'首页待办',0,12,'',NULL,NULL,1,0,'F','1','0','indexHome:todoQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
-	(3046,'首页漏斗图',0,13,'',NULL,NULL,1,0,'F','1','0','indexHome:funnelQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
-	(3047,'首页销售龙虎榜',0,14,'',NULL,NULL,1,0,'F','1','0','indexHome:saleQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
-	(3048,'首页商机龙虎榜',0,15,'',NULL,NULL,1,0,'F','1','0','indexHome:businessQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','');
+	(3043,'首页基础数据查询',0,30,'',NULL,NULL,1,0,'F','1','0','indexHome:baseQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3044,'首页今日简报',0,31,'',NULL,NULL,1,0,'F','1','0','indexHome:todayQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3045,'首页待办',0,32,'',NULL,NULL,1,0,'F','1','0','indexHome:todoQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3046,'首页漏斗图',0,33,'',NULL,NULL,1,0,'F','1','0','indexHome:funnelQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3047,'首页销售龙虎榜',0,34,'',NULL,NULL,1,0,'F','1','0','indexHome:saleQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3048,'首页商机龙虎榜',0,35,'',NULL,NULL,1,0,'F','1','0','indexHome:businessQuery','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3049,'渠道管理查询',2008,1,'#','',NULL,1,0,'F','0','0','tienchin:channel:query','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3050,'渠道管理新增',2008,2,'#','',NULL,1,0,'F','0','0','tienchin:channel:add','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3051,'渠道管理修改',2008,3,'#','',NULL,1,0,'F','0','0','tienchin:channel:edit','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44',''),
+	(3052,'渠道管理删除',2008,4,'#','',NULL,1,0,'F','0','0','tienchin:channel:remove','#','admin','2022-04-21 22:40:25','','2022-04-21 22:40:44','');
 
 /*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -597,7 +610,8 @@ VALUES
 	(110,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"edit\",\"orderNum\":2,\"menuName\":\"商机管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"business\",\"component\":\"tienchin/business/index\",\"children\":[],\"createTime\":1617154774000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2001,\"menuType\":\"C\",\"perms\":\"tienchin:business:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:16:23'),
 	(111,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"peoples\",\"orderNum\":4,\"menuName\":\"活动管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"activity\",\"component\":\"tienchin/activity/index\",\"children\":[],\"createTime\":1617216998000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2003,\"menuType\":\"C\",\"perms\":\"tienchin:activity:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:16:40'),
 	(112,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"list\",\"orderNum\":5,\"menuName\":\"课程管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"course\",\"component\":\"tienchin/course/index\",\"children\":[],\"createTime\":1617243256000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2004,\"menuType\":\"C\",\"perms\":\"tienchin:course:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:17:09'),
-	(113,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"chart\",\"orderNum\":6,\"menuName\":\"统计分析\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"analysis\",\"component\":\"tienchin/analysis/index\",\"children\":[],\"createTime\":1618438016000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2006,\"menuType\":\"C\",\"perms\":\"tienchin:analysis:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:18:00');
+	(113,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"chart\",\"orderNum\":6,\"menuName\":\"统计分析\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"analysis\",\"component\":\"tienchin/analysis/index\",\"children\":[],\"createTime\":1618438016000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2006,\"menuType\":\"C\",\"perms\":\"tienchin:analysis:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-21 22:18:00'),
+	(114,'菜单管理',2,'org.javaboy.web.controller.system.SysMenuController.edit()','PUT',1,'admin',NULL,'/system/menu','127.0.0.1','内网IP','{\"visible\":\"0\",\"icon\":\"row\",\"orderNum\":8,\"menuName\":\"渠道管理\",\"params\":{},\"parentId\":0,\"isCache\":\"0\",\"path\":\"channel\",\"component\":\"tienchin/channel/index\",\"children\":[],\"createTime\":1650552025000,\"updateBy\":\"admin\",\"isFrame\":\"1\",\"menuId\":2008,\"menuType\":\"C\",\"perms\":\"tienchin:channel:list\",\"status\":\"0\"}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2022-04-23 09:25:13');
 
 /*!40000 ALTER TABLE `sys_oper_log` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -833,7 +847,7 @@ LOCK TABLES `sys_user` WRITE;
 
 INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`)
 VALUES
-	(1,103,'admin','TienChin','00','ry@163.com','15888888888','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-21 22:06:29','admin','2022-04-21 19:29:24','','2022-04-21 22:06:28','管理员'),
+	(1,103,'admin','TienChin','00','ry@163.com','15888888888','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-23 09:21:41','admin','2022-04-21 19:29:24','','2022-04-23 09:21:41','管理员'),
 	(2,105,'ry','TienChin','00','ry@qq.com','15666666666','1','','$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2','0','0','127.0.0.1','2022-04-21 19:29:24','admin','2022-04-21 19:29:24','',NULL,'测试员');
 
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
