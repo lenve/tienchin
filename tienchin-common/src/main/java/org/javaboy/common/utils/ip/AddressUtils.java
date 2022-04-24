@@ -3,7 +3,7 @@ package org.javaboy.common.utils.ip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.javaboy.common.constant.Constants;
 import org.javaboy.common.utils.StringUtils;
 import org.javaboy.common.utils.http.HttpUtils;
@@ -27,7 +27,7 @@ public class AddressUtils {
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (SiMaConfig.isAddressEnabled()) {
+        if (TienChinConfig.isAddressEnabled()) {
             try {
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true" , Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {

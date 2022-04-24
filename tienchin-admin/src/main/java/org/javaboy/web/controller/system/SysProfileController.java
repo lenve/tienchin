@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.javaboy.common.annotation.Log;
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.javaboy.common.constant.UserConstants;
 import org.javaboy.common.core.controller.BaseController;
 import org.javaboy.common.core.domain.AjaxResult;
@@ -115,7 +115,7 @@ public class SysProfileController extends BaseController {
     public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             LoginUser loginUser = getLoginUser();
-            String avatar = FileUploadUtils.upload(SiMaConfig.getAvatarPath(), file);
+            String avatar = FileUploadUtils.upload(TienChinConfig.getAvatarPath(), file);
             if (userService.updateUserAvatar(loginUser.getUsername(), avatar)) {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl" , avatar);

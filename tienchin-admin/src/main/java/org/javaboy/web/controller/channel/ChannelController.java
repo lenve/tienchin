@@ -42,7 +42,7 @@ public class ChannelController extends BaseController {
     }
     @PreAuthorize("@ss.hasPermi('tienchin:channel:add')")
     @Log(title = "渠道管理" , businessType = BusinessType.INSERT)
-    @PostMapping
+    @PostMapping("/")
     public AjaxResult add(@Validated @RequestBody Channel channel) {
         channel.setCreateBy(getUsername());
         return toAjax(channelService.saveChannel(channel));
@@ -56,7 +56,7 @@ public class ChannelController extends BaseController {
 
     @PreAuthorize("@ss.hasPermi('tienchin:channel:edit')")
     @Log(title = "渠道管理" , businessType = BusinessType.UPDATE)
-    @PutMapping
+    @PutMapping("/")
     public AjaxResult edit(@Validated @RequestBody Channel channel) {
         channel.setUpdateBy(getUsername());
         channel.setUpdateTime(LocalDateTime.now());

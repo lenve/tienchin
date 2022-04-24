@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +59,7 @@ public class CaptchaController {
         BufferedImage image = null;
 
         // 生成验证码
-        String captchaType = SiMaConfig.getCaptchaType();
+        String captchaType = TienChinConfig.getCaptchaType();
         if ("math".equals(captchaType)) {
             String capText = captchaProducerMath.createText();
             capStr = capText.substring(0, capText.lastIndexOf("@"));

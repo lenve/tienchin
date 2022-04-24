@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.javaboy.common.utils.DateUtils;
 import org.javaboy.common.utils.StringUtils;
 import org.javaboy.common.utils.uuid.IdUtils;
@@ -64,7 +64,7 @@ public class FileUtils {
      * @throws IOException IO异常
      */
     public static String writeImportBytes(byte[] data) throws IOException {
-        return writeBytes(data, SiMaConfig.getImportPath());
+        return writeBytes(data, TienChinConfig.getImportPath());
     }
 
     /**

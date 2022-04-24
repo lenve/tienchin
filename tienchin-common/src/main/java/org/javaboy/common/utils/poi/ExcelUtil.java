@@ -69,7 +69,7 @@ import org.javaboy.common.annotation.Excel;
 import org.javaboy.common.annotation.Excel.ColumnType;
 import org.javaboy.common.annotation.Excel.Type;
 import org.javaboy.common.annotation.Excels;
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.javaboy.common.core.domain.AjaxResult;
 import org.javaboy.common.core.text.Convert;
 import org.javaboy.common.exception.UtilException;
@@ -911,7 +911,7 @@ public class ExcelUtil<T> {
      * @param filename 文件名称
      */
     public String getAbsoluteFile(String filename) {
-        String downloadPath = SiMaConfig.getDownloadPath() + filename;
+        String downloadPath = TienChinConfig.getDownloadPath() + filename;
         File desc = new File(downloadPath);
         if (!desc.getParentFile().exists()) {
             desc.getParentFile().mkdirs();

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "tienchin")
-public class SiMaConfig {
+public class TienChinConfig {
     /**
      * 项目名称
      */
@@ -83,7 +83,7 @@ public class SiMaConfig {
     }
 
     public void setProfile(String profile) {
-        SiMaConfig.profile = profile;
+        TienChinConfig.profile = profile;
     }
 
     public static boolean isAddressEnabled() {
@@ -91,7 +91,7 @@ public class SiMaConfig {
     }
 
     public void setAddressEnabled(boolean addressEnabled) {
-        SiMaConfig.addressEnabled = addressEnabled;
+        TienChinConfig.addressEnabled = addressEnabled;
     }
 
     public static String getCaptchaType() {
@@ -99,7 +99,7 @@ public class SiMaConfig {
     }
 
     public void setCaptchaType(String captchaType) {
-        SiMaConfig.captchaType = captchaType;
+        TienChinConfig.captchaType = captchaType;
     }
 
     /**

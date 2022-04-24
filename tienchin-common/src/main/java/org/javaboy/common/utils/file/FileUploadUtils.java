@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.javaboy.common.config.SiMaConfig;
+import org.javaboy.common.config.TienChinConfig;
 import org.javaboy.common.constant.Constants;
 import org.javaboy.common.exception.file.FileNameLengthLimitExceededException;
 import org.javaboy.common.exception.file.FileSizeLimitExceededException;
@@ -35,7 +35,7 @@ public class FileUploadUtils {
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = SiMaConfig.getProfile();
+    private static String defaultBaseDir = TienChinConfig.getProfile();
 
     public static void setDefaultBaseDir(String defaultBaseDir) {
         FileUploadUtils.defaultBaseDir = defaultBaseDir;
@@ -125,7 +125,7 @@ public class FileUploadUtils {
     }
 
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-        int dirLastIndex = SiMaConfig.getProfile().length() + 1;
+        int dirLastIndex = TienChinConfig.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }
