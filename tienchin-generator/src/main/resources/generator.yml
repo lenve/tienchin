@@ -3,7 +3,7 @@ gen:
   # 作者
   author: tienchin
   # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
-  packageName: org.javaboy.system
+  packageName: org.javaboy.tienchin.system
   # 自动去除表前缀，默认是false
   autoRemovePre: false
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）

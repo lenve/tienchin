@@ -56,6 +56,13 @@
             <artifactId>tienchin-channel</artifactId>
         </dependency>
 
+        <!--促销活动模块-->
+
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-activity</artifactId>
+        </dependency>
+
         <!-- 定时任务-->
         <dependency>
             <groupId>org.javaboy</groupId>
