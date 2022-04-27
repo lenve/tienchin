@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
@@ -162,6 +164,18 @@ public class ReflectUtils {
                         }
                     } else if (cs[i] == boolean.class || cs[i] == Boolean.class) {
                         args[i] = Convert.toBool(args[i]);
+                    } else if (cs[i] == LocalDateTime.class) {
+                        if (args[i] instanceof String) {
+                            args[i] = DateUtils.getLocalDateTime((String) args[i]);
+                        } else {
+                            args[i] = DateUtils.getLocalDateTimeOfTimestamp((Long) args[i]);
+                        }
+                    }else if (cs[i] == LocalDate.class) {
+                        if (args[i] instanceof String) {
+                            args[i] = DateUtils.getLocalDate((String) args[i]);
+                        } else {
+                            args[i] = DateUtils.getLocalDateOfTimestamp((Long) args[i]);
+                        }
                     }
                 }
             }

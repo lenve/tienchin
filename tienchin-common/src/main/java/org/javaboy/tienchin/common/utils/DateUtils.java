@@ -3,11 +3,8 @@ package org.javaboy.tienchin.common.utils;
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -29,9 +26,9 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     private static String[] parsePatterns = {
-            "yyyy-MM-dd" , "yyyy-MM-dd HH:mm:ss" , "yyyy-MM-dd HH:mm" , "yyyy-MM" ,
-            "yyyy/MM/dd" , "yyyy/MM/dd HH:mm:ss" , "yyyy/MM/dd HH:mm" , "yyyy/MM" ,
-            "yyyy.MM.dd" , "yyyy.MM.dd HH:mm:ss" , "yyyy.MM.dd HH:mm" , "yyyy.MM"};
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
+            "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
+            "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
     /**
      * 获取当前Date型日期
@@ -160,5 +157,49 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         LocalDateTime localDateTime = LocalDateTime.of(temporalAccessor, LocalTime.of(0, 0, 0));
         ZonedDateTime zdt = localDateTime.atZone(ZoneId.systemDefault());
         return Date.from(zdt.toInstant());
+    }
+
+    /**
+     * 时间戳转 LocalDateTime
+     *
+     * @param timestamp
+     * @return
+     */
+    public static LocalDateTime getLocalDateTimeOfTimestamp(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        ZoneId zone = ZoneId.systemDefault();
+        return LocalDateTime.ofInstant(instant, zone);
+    }
+
+    /**
+     * 时间戳转 LocalDate
+     *
+     * @param timestamp
+     * @return
+     */
+    public static LocalDate getLocalDateOfTimestamp(long timestamp) {
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        ZoneId zone = ZoneId.systemDefault();
+        return instant.atZone(zone).toLocalDate();
+    }
+
+    /**
+     * 字符串转 LocalDateTime
+     *
+     * @param datetime
+     * @return
+     */
+    public static LocalDateTime getLocalDateTime(String datetime) {
+        return LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS));
+    }
+
+    /**
+     * 字符串转 LocalDate
+     *
+     * @param date
+     * @return
+     */
+    public static LocalDate getLocalDate(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern(YYYY_MM_DD));
     }
 }

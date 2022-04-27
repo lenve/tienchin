@@ -67,7 +67,7 @@ public class ChannelController extends BaseController {
     @Log(title = "渠道管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{channelIds}")
     public AjaxResult remove(@PathVariable Long[] channelIds) {
-        return toAjax(channelService.removeBatchByIds(Arrays.asList(channelIds)));
+        return channelService.deleteChannelByIds(channelIds);
     }
 
 }

@@ -49,9 +49,9 @@ export function changeActivityStatus(id, status) {
 }
 
 // 根据 id 删除活动
-export function delChannel(channelIds) {
+export function delActivity(activityIds) {
   return request({
-    url: '/tienchin/channel/' + channelIds,
+    url: '/tienchin/activity/' + activityIds,
     method: 'delete'
   })
 }

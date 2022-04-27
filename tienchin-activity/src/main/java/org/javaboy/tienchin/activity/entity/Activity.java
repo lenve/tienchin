@@ -3,6 +3,8 @@ package org.javaboy.tienchin.activity.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.javaboy.tienchin.common.annotation.Excel;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -28,60 +30,71 @@ public class Activity implements Serializable {
     /**
      * 活动编号
      */
+    @Excel(name = "活动编号")
     private String code;
 
     /**
      * 活动名称
      */
+    @Excel(name = "活动名称")
     private String name;
 
     /**
      * 渠道来源
      */
+    @Excel(name = "渠道来源")
     private String channel;
 
     /**
      * 活动简介
      */
+    @Excel(name = "活动简介")
     private String info;
 
     /**
      * 活动类型
      */
+    @Excel(name = "活动类型",readConverterExp = "1=年费折扣卡,2=年费代金券")
     private String type;
 
     /**
      * 年费折扣
      */
+    @Excel(name = "年费折扣")
     private Float discount;
 
     /**
      * 年费代金券
      */
+    @Excel(name = "年费代金券")
     private Double voucher;
 
     /**
      * 状态
      */
+    @Excel(name = "活动状态",readConverterExp = "0=正常,1=停用")
     private String status;
 
     /**
      * 开始时间
      */
+    @Excel(name = "活动开始时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime beginTime;
 
     /**
      * 结束时间
      */
+    @Excel(name = "活动结束时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
 
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
 
-    private String createBy;
-
+    @Excel(name = "活动创建人")
     private String updateBy;
+    @Excel(name = "活动修改人")
+    private String createBy;
 
     public Long getId() {
         return id;

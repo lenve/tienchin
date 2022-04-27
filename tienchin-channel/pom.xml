@@ -23,5 +23,12 @@
             <artifactId>tienchin-common</artifactId>
         </dependency>
 
+        <!--促销活动模块-->
+
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-activity</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

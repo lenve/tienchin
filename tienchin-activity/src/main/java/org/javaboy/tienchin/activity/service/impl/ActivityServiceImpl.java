@@ -9,6 +9,7 @@ import org.javaboy.tienchin.common.utils.uuid.IdUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -28,5 +29,20 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         //默认状态正常
         activity.setStatus("0");
         return save(activity);
+    }
+
+    @Override
+    public List<Activity> getActivityList(Activity activity) {
+        QueryWrapper<Activity> qw = new QueryWrapper<>();
+        if (activity.getChannel() != null) {
+            qw.lambda().eq(Activity::getChannel, activity.getChannel());
+        }
+        if (activity.getStatus() != null) {
+            qw.lambda().eq(Activity::getStatus, activity.getStatus());
+        }
+        if (activity.getEndTime() != null && activity.getBeginTime() != null) {
+            qw.lambda().ge(Activity::getBeginTime, activity.getBeginTime()).le(Activity::getEndTime, activity.getEndTime());
+        }
+        return list(qw);
     }
 }
