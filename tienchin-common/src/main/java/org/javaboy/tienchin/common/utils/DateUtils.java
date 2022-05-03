@@ -202,4 +202,15 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static LocalDate getLocalDate(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern(YYYY_MM_DD));
     }
+
+    /**
+     *
+     * @param dateTime
+     * @return
+     */
+    public static Long getTimeStamp(LocalDateTime dateTime) {
+        Long second = dateTime.toEpochSecond(ZoneOffset.of("+8"));
+        return second;
+    }
+
 }

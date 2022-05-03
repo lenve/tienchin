@@ -1,6 +1,6 @@
 package org.javaboy.tienchin.activity.service;
 
-import org.javaboy.tienchin.activity.entity.Activity;
+import org.javaboy.tienchin.activity.domain.Activity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

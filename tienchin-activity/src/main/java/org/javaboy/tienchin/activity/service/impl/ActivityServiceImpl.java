@@ -2,7 +2,7 @@ package org.javaboy.tienchin.activity.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.javaboy.tienchin.activity.entity.Activity;
+import org.javaboy.tienchin.activity.domain.Activity;
 import org.javaboy.tienchin.activity.mapper.ActivityMapper;
 import org.javaboy.tienchin.activity.service.IActivityService;
 import org.javaboy.tienchin.common.utils.uuid.IdUtils;

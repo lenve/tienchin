@@ -63,6 +63,13 @@
             <artifactId>tienchin-activity</artifactId>
         </dependency>
 
+        <!--线索管理模块-->
+
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-clue</artifactId>
+        </dependency>
+
         <!-- 定时任务-->
         <dependency>
             <groupId>org.javaboy</groupId>

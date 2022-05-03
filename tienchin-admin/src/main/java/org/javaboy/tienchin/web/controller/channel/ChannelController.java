@@ -1,6 +1,6 @@
 package org.javaboy.tienchin.web.controller.channel;
 
-import org.javaboy.tienchin.channel.entity.Channel;
+import org.javaboy.tienchin.channel.domain.Channel;
 import org.javaboy.tienchin.channel.service.IChannelService;
 import org.javaboy.tienchin.common.annotation.Log;
 import org.javaboy.tienchin.common.core.controller.BaseController;
@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 /**

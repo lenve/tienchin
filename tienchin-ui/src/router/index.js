@@ -135,6 +135,20 @@ export const dynamicRoutes = [
     ]
   },
   {
+    path: '/clue/details',
+    component: Layout,
+    hidden: true,
+    permissions: ['tienchin:clue:query'],
+    children: [
+      {
+        path: 'index/:clueId(\\d+)/:type(\\S+)',
+        component: () => import('@/views/tienchin/clue/details'),
+        name: 'Details',
+        meta: { title: '线索详细信息', activeMenu: '/clue' }
+      }
+    ]
+  },
+  {
     path: '/monitor/job-log',
     component: Layout,
     hidden: true,

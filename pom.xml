@@ -42,6 +42,7 @@
         <jwt.version>0.9.1</jwt.version>
         <mybatis-plus-boot-starter.version>3.5.1</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+        <cglib.version>3.2.5</cglib.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -234,6 +235,32 @@
                 <version>${tienchin.version}</version>
             </dependency>
 
+            <!--线索管理模块-->
+            <dependency>
+                <groupId>org.javaboy</groupId>
+                <artifactId>tienchin-clue</artifactId>
+                <version>${tienchin.version}</version>
+            </dependency>
+
+            <!--分配管理模块-->
+            <dependency>
+                <groupId>org.javaboy</groupId>
+                <artifactId>tienchin-assignment</artifactId>
+                <version>${tienchin.version}</version>
+            </dependency>
+
+            <!--规则管理模块-->
+            <dependency>
+                <groupId>org.javaboy</groupId>
+                <artifactId>tienchin-rule</artifactId>
+                <version>${tienchin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -246,6 +273,9 @@
         <module>tienchin-common</module>
         <module>tienchin-channel</module>
         <module>tienchin-activity</module>
+        <module>tienchin-clue</module>
+        <module>tienchin-assignment</module>
+        <module>tienchin-rule</module>
     </modules>
     <packaging>pom</packaging>
 

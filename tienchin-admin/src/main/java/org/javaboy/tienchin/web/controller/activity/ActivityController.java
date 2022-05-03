@@ -1,6 +1,6 @@
 package org.javaboy.tienchin.web.controller.activity;
 
-import org.javaboy.tienchin.activity.entity.Activity;
+import org.javaboy.tienchin.activity.domain.Activity;
 import org.javaboy.tienchin.activity.service.IActivityService;
 import org.javaboy.tienchin.common.annotation.Log;
 import org.javaboy.tienchin.common.core.controller.BaseController;
