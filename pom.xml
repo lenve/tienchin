@@ -256,6 +256,13 @@
                 <version>${tienchin.version}</version>
             </dependency>
 
+            <!--跟进记录模块-->
+            <dependency>
+                <groupId>org.javaboy</groupId>
+                <artifactId>tienchin-followrecord</artifactId>
+                <version>${tienchin.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
@@ -276,6 +283,7 @@
         <module>tienchin-clue</module>
         <module>tienchin-assignment</module>
         <module>tienchin-rule</module>
+        <module>tienchin-followrecord</module>
     </modules>
     <packaging>pom</packaging>
 

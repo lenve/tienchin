@@ -155,7 +155,7 @@
           >
             <template slot-scope="scope" v-if="scope.row.userId !== 1">
               <router-link :to="'/clue/details/index/' + scope.row.id+'/view'" class="link-type"
-                           v-hasPermi="['tienchin:clue:query']">
+                           v-hasPermi="['tienchin:clue:info']">
                 <span>查看</span>
               </router-link>
               <!--<router-link :to="'/clue/details/index/' + scope.row.id" class="link-type" v-hasPermi="['tienchin:clue:assignment']">
@@ -173,7 +173,7 @@
                 size="mini"
                 type="text"
                 icon="el-icon-thumb"
-                @click="handleDelete(scope.row)"
+                @click="showAssignDialog(scope.row)"
                 v-hasPermi="['tienchin:clue:assignment']"
               >分配
               </el-button>
@@ -305,11 +305,44 @@
         <el-button @click="upload.open = false">取 消</el-button>
       </div>
     </el-dialog>
+    <el-dialog
+      title="分配线索"
+      :visible.sync="assignClueDialog"
+      width="40%">
+      <div>
+        <el-form :model="assignClue" size="small" :inline="true">
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="归属部门" prop="deptId">
+                <treeselect style="width: 220px" v-model="assignClue.deptId" :options="deptOptions" :show-count="true" placeholder="请选择归属部门" @select="handleNodeClick"/>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="分配给" prop="userId">
+                <el-select v-model="userValue" placeholder="请选择员工" @change="selectUser">
+                  <el-option
+                    v-for="item in userList"
+                    :key="item.userId"
+                    :label="item.nickName"
+                    :value="[item.userId,item.userName]"
+                    :disabled="item.status == 1"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="assignClueDialog = false">取消分配</el-button>
+    <el-button type="primary" @click="handleAssignClue">分配线索</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-  import { addClue, listClue } from '../../../api/clue'
+  import { addClue, listClue, assignClue, followClue } from '../../../api/clue'
   import {
     addActivity,
     listActivity,
@@ -320,10 +353,15 @@
   } from '../../../api/activity'
   import { listChannel } from '../../../api/channel'
   import { getToken } from '@/utils/auth'
+  import { treeselect } from '../../../api/system/dept'
+  import Treeselect from '@riophae/vue-treeselect'
+  import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+  import { listUser } from '../../../api/system/user'
 
   export default {
     name: 'index',
     dicts: ['sys_normal_disable', 'sys_user_sex', 'clue_status_type'],
+    components: { Treeselect },
     data() {
       return {
         pickerOptions: {
@@ -331,8 +369,17 @@
             return time.getTime() < Date.now()
           }
         },
+        userValue: '',
+        // 部门树选项
+        deptOptions: undefined,
         //渠道数组
         channels: [],
+        assignClue: {
+          assignId: undefined,
+          userId: undefined,
+          userName:undefined,
+          deptId:undefined
+        },
         // 遮罩层
         loading: true,
         // 选中数组
@@ -352,6 +399,7 @@
         title: '',
         // 是否显示弹出层
         open: false,
+        assignClueDialog: false,
         // 日期范围
         dateRange: [],
         // 表单参数
@@ -409,15 +457,52 @@
           channel: [
             { required: true, message: '渠道不能为空', trigger: 'blur' }
           ]
-        }
+        },
+        queryUserParams: {},
+        userList:[]
       }
     },
     created() {
       this.getChannels()
       this.getList()
+      this.getTreeselect()
     },
     methods: {
-
+      selectUser(e) {
+        let [userId, userName] = e
+        this.assignClue.userId = userId
+        this.assignClue.userName = userName
+      },
+      handleAssignClue() {
+        assignClue(this.assignClue).then(response => {
+          this.$modal.msgSuccess('分配成功')
+          this.getList()
+          this.assignClueDialog = false
+        })
+      },
+      /** 查询部门下拉树结构 */
+      getTreeselect() {
+        treeselect().then(response => {
+          this.deptOptions = response.data
+        })
+      },
+      // 节点单击事件
+      handleNodeClick(data) {
+        this.assignClue.userId = undefined
+        this.assignClue.deptId = data.id
+        this.queryUserParams.deptId = data.id
+        this.getUserList()
+      },
+      getUserList() {
+        listUser(this.queryUserParams).then(response => {
+            this.userList = response.rows;
+          }
+        );
+      },
+      showAssignDialog(data) {
+        this.assignClue.assignId = data.id
+        this.assignClueDialog = true
+      },
       getList() {
         this.loading = true
         if (this.queryParams.createTime) {
@@ -585,7 +670,7 @@
   }
 </script>
 <style>
-  .link-type{
+  .link-type {
     margin: 0px 10px;
   }
 </style>

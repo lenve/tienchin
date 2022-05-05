@@ -88,7 +88,7 @@ public class Clue implements Serializable {
     /**
      * 伪线索失败次数(最大数3次)
      */
-    private Integer falseCount;
+    private Integer failCount;
 
     /**
      * 下次跟进时间
@@ -211,13 +211,15 @@ public class Clue implements Serializable {
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
-    public Integer getFalseCount() {
-        return falseCount;
+
+    public Integer getFailCount() {
+        return failCount;
     }
 
-    public void setFalseCount(Integer falseCount) {
-        this.falseCount = falseCount;
+    public void setFailCount(Integer failCount) {
+        this.failCount = failCount;
     }
+
     public LocalDateTime getNextTime() {
         return nextTime;
     }
@@ -277,7 +279,7 @@ public class Clue implements Serializable {
             ", subject=" + subject +
             ", status=" + status +
             ", createBy=" + createBy +
-            ", falseCount=" + falseCount +
+            ", failCount=" + failCount +
             ", nextTime=" + nextTime +
             ", updateTime=" + updateTime +
             ", transfer=" + transfer +

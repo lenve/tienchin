@@ -17,6 +17,14 @@ export function getClueById(clueId) {
   })
 }
 
+// 查看线索跟进记录
+export function getFollowRecordByClueId(clueId) {
+  return request({
+    url: '/tienchin/clue/record/list/' + clueId,
+    method: 'get'
+  })
+}
+
 // 添加活动
 export function addClue(data) {
   return request({
@@ -26,10 +34,28 @@ export function addClue(data) {
   })
 }
 
-// 更新活动信息
-export function updateActivity(data) {
+// 线索跟进
+export function followClue(data) {
   return request({
-    url: '/tienchin/activity/',
+    url: '/tienchin/clue/',
+    method: 'put',
+    data: data
+  })
+}
+
+// 线索跟进
+export function invalidClue(data) {
+  return request({
+    url: '/tienchin/clue/invalid',
+    method: 'put',
+    data: data
+  })
+}
+
+// 线索跟进
+export function assignClue(data) {
+  return request({
+    url: '/tienchin/clue/assign',
     method: 'put',
     data: data
   })

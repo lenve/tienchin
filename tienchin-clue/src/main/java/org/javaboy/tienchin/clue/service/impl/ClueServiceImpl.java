@@ -1,22 +1,27 @@
 package org.javaboy.tienchin.clue.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.javaboy.tienchin.assignment.domain.Assignment;
 import org.javaboy.tienchin.assignment.service.IAssignmentService;
 import org.javaboy.tienchin.assignment.utils.AssignmentType;
 import org.javaboy.tienchin.clue.domain.Clue;
 import org.javaboy.tienchin.clue.domain.dto.ClueDTO;
+import org.javaboy.tienchin.clue.domain.dto.ClueFollowDTO;
 import org.javaboy.tienchin.clue.domain.vo.ClueDetailsVO;
 import org.javaboy.tienchin.clue.domain.vo.ClueVO;
 import org.javaboy.tienchin.clue.mapper.ClueMapper;
 import org.javaboy.tienchin.clue.service.IClueService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.javaboy.tienchin.clue.utils.RuleUtils;
-import org.javaboy.tienchin.common.annotation.Excel;
 import org.javaboy.tienchin.common.core.domain.AjaxResult;
+import org.javaboy.tienchin.common.utils.ConvertUtil;
 import org.javaboy.tienchin.common.utils.SecurityUtils;
+import org.javaboy.tienchin.followrecord.domain.FollowRecord;
+import org.javaboy.tienchin.followrecord.service.IFollowRecordService;
+import org.javaboy.tienchin.followrecord.utils.FollowRecordType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +42,8 @@ public class ClueServiceImpl extends ServiceImpl<ClueMapper, Clue> implements IC
 
     @Autowired
     IAssignmentService assignmentService;
+    @Autowired
+    IFollowRecordService followRecordService;
 
     @Autowired
     ClueMapper clueMapper;
@@ -73,7 +80,7 @@ public class ClueServiceImpl extends ServiceImpl<ClueMapper, Clue> implements IC
         LambdaUpdateWrapper<Clue> wrapper = new LambdaUpdateWrapper<>();
         wrapper.eq(Clue::getId, clue.getId()).set(Clue::getEndTime, clue.getEndTime());
         boolean updateClue = update(wrapper);
-        return (saveClue && saveAssignment && updateClue)?AjaxResult.success():AjaxResult.error();
+        return (saveClue && saveAssignment && updateClue) ? AjaxResult.success() : AjaxResult.error();
     }
 
     @Override
@@ -85,5 +92,54 @@ public class ClueServiceImpl extends ServiceImpl<ClueMapper, Clue> implements IC
     @Override
     public ClueDetailsVO getClueById(Long id) {
         return clueMapper.getClueById(id);
+    }
+
+    @Override
+    public boolean follow(ClueFollowDTO clueFollowDTO) {
+        Clue clue = ConvertUtil.convert(clueFollowDTO, Clue.class);
+        boolean b = updateById(clue);
+        boolean a = saveFollowRecord(clueFollowDTO);
+        return b && a;
+    }
+
+    @Override
+    public List<FollowRecord> getClueFollowRecordList(Long cid) {
+        QueryWrapper<FollowRecord> qw = new QueryWrapper<>();
+        qw.lambda().eq(FollowRecord::getAssignId, cid);
+        return followRecordService.list(qw);
+    }
+
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public boolean assginClue(Assignment assignment) {
+        UpdateWrapper<Assignment> qw = new UpdateWrapper<>();
+        qw.lambda().eq(Assignment::getAssignId, assignment.getAssignId()).set(Assignment::getLatest, false);
+        boolean update = assignmentService.update(qw);
+        assignment.setType(AssignmentType.CLUE);
+        //是当前最新分配人
+        assignment.setLatest(true);
+        assignment.setCreateTime(LocalDateTime.now());
+        assignment.setCreateBy(SecurityUtils.getUsername());
+        boolean save = assignmentService.save(assignment);
+        return save && update;
+    }
+
+    @Override
+    public boolean invalidClue(ClueFollowDTO clueFollowDTO) {
+        LambdaUpdateWrapper<Clue> qw = new LambdaUpdateWrapper<>();
+        qw.eq(Clue::getId, clueFollowDTO.getId()).setSql("fail_count=fail_count+1");
+        boolean update = update(qw);
+        boolean a = saveFollowRecord(clueFollowDTO);
+        return update&&a;
+    }
+
+    private boolean saveFollowRecord(ClueFollowDTO clueFollowDTO) {
+        FollowRecord fr = new FollowRecord();
+        fr.setAssignId(clueFollowDTO.getId());
+        fr.setCreateBy(SecurityUtils.getUsername());
+        fr.setCreateTime(LocalDateTime.now());
+        fr.setInfo(clueFollowDTO.getRecord());
+        fr.setType(FollowRecordType.CLUE);
+        return followRecordService.save(fr);
     }
 }

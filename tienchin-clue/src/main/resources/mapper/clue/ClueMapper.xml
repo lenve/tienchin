@@ -4,29 +4,28 @@
 
     <select id="getClueList" resultType="clueVO">
         select tc.*,ta.user_name,ta.create_time as belongTime from tienchin_clue tc left join tienchin_assignment ta on
-        tc.`id`=ta.`assign_id`
-        <where>
-            <if test="id!=null">
-                and tc.id=#{id}
-            </if>
-            <if test="phone!=null">
-                and tc.phone=#{phone}
-            </if>
-            <if test="userName!=null">
-                and ta.user_name=#{userName}
-            </if>
-            <if test="status!=null">
-                and tc.status=#{status}
-            </if>
-            <if test="channel!=null">
-                and tc.channel=#{channel}
-            </if>
-            <if test="beginTime!=null and endTime!=null">
-                and tc.create_time>#{beginTime} and tc.create_time &lt; #{endTime}
-            </if>
-        </where>
+        tc.`id`=ta.`assign_id` where ta.latest=true and tc.fail_count &lt; 3
+        <if test="id!=null">
+            and tc.id=#{id}
+        </if>
+        <if test="phone!=null">
+            and tc.phone=#{phone}
+        </if>
+        <if test="userName!=null">
+            and ta.user_name=#{userName}
+        </if>
+        <if test="status!=null">
+            and tc.status=#{status}
+        </if>
+        <if test="channel!=null">
+            and tc.channel=#{channel}
+        </if>
+        <if test="beginTime!=null and endTime!=null">
+            and tc.create_time>#{beginTime} and tc.create_time &lt; #{endTime}
+        </if>
+        order by tc.id asc
     </select>
     <select id="getClueById" resultType="org.javaboy.tienchin.clue.domain.vo.ClueDetailsVO">
-select tc.*,ta.user_name,ta.create_time as belongTime,tc.create_by as allocator,c.channel_name,ac.name as activityName,ac.info as activityInfo from tienchin_clue tc left join tienchin_assignment ta on tc.`id`=ta.`assign_id` left join tienchin_channel c on c.channel_id=tc.channel left join tienchin_activity ac on ac.id=tc.activity_id where tc.id=#{id}
+select tc.*,ta.user_name,ta.create_time as belongTime,tc.create_by as allocator,c.channel_name,ac.name as activityName,ac.info as activityInfo from tienchin_clue tc left join tienchin_assignment ta on tc.`id`=ta.`assign_id` left join tienchin_channel c on c.channel_id=tc.channel left join tienchin_activity ac on ac.id=tc.activity_id where tc.id=#{id} and ta.latest=true
     </select>
 </mapper>

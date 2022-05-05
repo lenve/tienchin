@@ -1,8 +1,11 @@
 package org.javaboy.tienchin.web.controller.clue;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.javaboy.tienchin.activity.domain.Activity;
+import org.javaboy.tienchin.assignment.domain.Assignment;
 import org.javaboy.tienchin.clue.domain.Clue;
 import org.javaboy.tienchin.clue.domain.dto.ClueDTO;
+import org.javaboy.tienchin.clue.domain.dto.ClueFollowDTO;
 import org.javaboy.tienchin.clue.domain.vo.ClueVO;
 import org.javaboy.tienchin.clue.service.IClueService;
 import org.javaboy.tienchin.common.annotation.Log;
@@ -48,10 +51,38 @@ public class ClueController extends BaseController {
         return getDataTable(list);
     }
 
-    @PreAuthorize("@ss.hasPermi('tienchin:clue:query')")
+    @PreAuthorize("@ss.hasPermi('tienchin:clue:record:list')")
+    @GetMapping("/record/list/{cid}")
+    public TableDataInfo getClueFollowRecordList(@PathVariable Long cid) {
+        startPage();
+        return getDataTable(clueService.getClueFollowRecordList(cid));
+    }
+
+    @PreAuthorize("@ss.hasPermi('tienchin:clue:info')")
     @GetMapping(value = "/{id}")
     public AjaxResult getClueById(@PathVariable Long id) {
         return AjaxResult.success(clueService.getClueById(id));
+    }
+
+    @PreAuthorize("@ss.hasPermi('tienchin:clue:record:add')")
+    @Log(title = "线索管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/")
+    public AjaxResult follow(@Validated @RequestBody ClueFollowDTO clueFollowDTO) {
+        return toAjax(clueService.follow(clueFollowDTO));
+    }
+
+    @PreAuthorize("@ss.hasPermi('tienchin:clue:record:add')")
+    @Log(title = "线索管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/assign")
+    public AjaxResult assginClue(@Validated @RequestBody Assignment assignment) {
+        return toAjax(clueService.assginClue(assignment));
+    }
+
+    @PreAuthorize("@ss.hasPermi('tienchin:clue:record:add')")
+    @Log(title = "线索管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/invalid")
+    public AjaxResult invalidClue(@Validated @RequestBody ClueFollowDTO clueFollowDTO) {
+        return toAjax(clueService.invalidClue(clueFollowDTO));
     }
 
 }

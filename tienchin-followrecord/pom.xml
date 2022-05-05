@@ -9,10 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tienchin-clue</artifactId>
-
+    <artifactId>tienchin-followrecord</artifactId>
     <description>
-        线索管理模块
+        跟进记录模块
     </description>
     <dependencies>
         <!-- 通用工具-->
@@ -20,17 +19,6 @@
             <groupId>org.javaboy</groupId>
             <artifactId>tienchin-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.javaboy</groupId>
-            <artifactId>tienchin-assignment</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.javaboy</groupId>
-            <artifactId>tienchin-rule</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.javaboy</groupId>
-            <artifactId>tienchin-followrecord</artifactId>
-        </dependency>
     </dependencies>
+
 </project>

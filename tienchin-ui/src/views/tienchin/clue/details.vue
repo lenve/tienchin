@@ -43,7 +43,7 @@
                 </el-col>
                 <el-col :span="8">
                   <div>
-                    <el-button :disabled="type==='view'" type="danger">无效线索</el-button>
+                    <el-button :disabled="type==='view'" type="danger" @click="showInvalidClueView">无效线索</el-button>
                     <el-button :disabled="type==='view'" type="primary">转为商机</el-button>
                   </div>
                 </el-col>
@@ -80,7 +80,8 @@
                 <el-col :span="8">
                   <div style="font-style: italic;font-weight: bold">年龄</div>
                   <div>
-                    <el-input-number :disabled="type==='view'" :max="99" :precision="0" :min="3" v-model="clue.age"></el-input-number>
+                    <el-input-number :disabled="type==='view'" :max="99" :precision="0" :min="3"
+                                     v-model="clue.age"></el-input-number>
                   </div>
                 </el-col>
               </el-row>
@@ -109,7 +110,8 @@
                   <div style="font-style: italic;font-weight: bold">意向等级</div>
                   <div>
                     <el-radio-group v-model="clue.level" size="medium" :disabled="type==='view'">
-                      <el-radio-button :label="i.label" :value="i.value" :key="i.value" v-for="i in dict.type.intention_level"></el-radio-button>
+                      <el-radio :label="i.value" :key="i.value" v-for="i in dict.type.intention_level">{{i.label}}
+                      </el-radio>
                     </el-radio-group>
                   </div>
                 </el-col>
@@ -119,7 +121,8 @@
                   <div style="font-style: italic;font-weight: bold">意向类型</div>
                   <div>
                     <el-radio-group v-model="clue.subject" size="medium" :disabled="type==='view'">
-                      <el-radio-button :label="i.label" :value="i.value" :key="i.value" v-for="i in dict.type.intention_type"></el-radio-button>
+                      <el-radio :label="i.value" :key="i.value" v-for="i in dict.type.intention_type">{{i.label}}
+                      </el-radio>
                     </el-radio-group>
                   </div>
                 </el-col>
@@ -158,7 +161,7 @@
               <el-row>
                 <el-col>
                   <div style="display: flex;justify-content: flex-end">
-                    <el-button type="primary" :disabled="type==='view'">提交</el-button>
+                    <el-button type="primary" :disabled="type==='view'" @click="submitFollowInfo">提交</el-button>
                     <el-button @click="goBack">返回</el-button>
                   </div>
                 </el-col>
@@ -173,31 +176,104 @@
             <span>线索跟进记录</span>
           </div>
           <div>
+            <div style="margin-bottom: 20px" v-for="r in records">
+              <span style="font-weight: bold;font-style: italic">{{r.createBy}}：</span>
+              <span>{{r.info}}</span>
+            </div>
           </div>
         </el-card>
       </el-col>
     </el-row>
+    <el-dialog
+      title="无效线索"
+      :visible.sync="invalidClueDialog"
+      width="30%">
+      <div>
+        <el-form :model="invalidClue" :inline="true">
+          <el-row>
+            <el-col :span="16">
+              <el-form-item label="原因" prop="reason1">
+                <el-select v-model="invalidClue.reason1" placeholder="请选择原因" @change="selectUser">
+                  <el-option
+                    v-for="item in dict.type.invalid_clue_type"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="16">
+            <el-col :span="24">
+              <el-form-item label="备注" prop="reason2">
+                <el-input v-model="invalidClue.reason2" type="textarea"
+                          :rows="5"
+                          placeholder="请输入备注信息"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="invalidClueDialog = false">取 消</el-button>
+    <el-button type="primary" @click="doSubmitInvalidClue">确 定</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-  import { getClueById } from '../../../api/clue'
+  import { getClueById, followClue, getFollowRecordByClueId,invalidClue } from '../../../api/clue'
 
   export default {
     name: 'details',
-    dicts: ['sys_user_sex','intention_level','intention_type'],
+    dicts: ['sys_user_sex', 'intention_level', 'intention_type', 'invalid_clue_type'],
     data() {
       return {
         type: null,
-        clue: {}
+        records: [],
+        clue: null,
+        invalidClueDialog: false,
+        invalidClue: {
+          reason1: undefined,
+          reason2: undefined
+        }
+      }
+    },
+    computed: {
+      record() {
+        return this.invalidClue.reason1 + ':' + this.invalidClue.reason2
       }
     },
     created() {
       const clueId = this.$route.params && this.$route.params.clueId
       this.type = this.$route.params && this.$route.params.type
       this.getClue(clueId)
+      this.followRecordList(clueId)
     },
     methods: {
+      doSubmitInvalidClue() {
+        invalidClue({id:this.clue.id,record:this.record}).then(response => {
+          this.$modal.msgSuccess('修改成功')
+          this.invalidClueDialog = false
+          this.$router.go(-1)
+        })
+      },
+      showInvalidClueView() {
+        this.invalidClueDialog = true
+      },
+      followRecordList(clueId) {
+        getFollowRecordByClueId(clueId).then(response => {
+          this.records = response.rows
+        })
+      },
+      submitFollowInfo() {
+        followClue(this.clue).then(response => {
+          this.$modal.msgSuccess('跟进成功')
+          this.$router.go(-1)
+        })
+      },
       getClue(clueId) {
         getClueById(clueId).then(response => {
           this.clue = response.data
