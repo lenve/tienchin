@@ -70,6 +70,12 @@
             <artifactId>tienchin-clue</artifactId>
         </dependency>
 
+        <!--私教课程管理模块-->
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-personalcourse</artifactId>
+        </dependency>
+
         <!-- 定时任务-->
         <dependency>
             <groupId>org.javaboy</groupId>

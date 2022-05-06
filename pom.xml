@@ -62,13 +62,13 @@
             </dependency>
 
             <!-- SpringBoot的依赖配置-->
-<!--            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.12</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>-->
+            <!--            <dependency>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-dependencies</artifactId>
+                            <version>2.5.12</version>
+                            <type>pom</type>
+                            <scope>import</scope>
+                        </dependency>-->
 
             <!-- 阿里数据库连接池 -->
             <dependency>
@@ -263,6 +263,13 @@
                 <version>${tienchin.version}</version>
             </dependency>
 
+            <!--私教课程管理模块-->
+            <dependency>
+                <groupId>org.javaboy</groupId>
+                <artifactId>tienchin-personalcourse</artifactId>
+                <version>${tienchin.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
@@ -284,6 +291,7 @@
         <module>tienchin-assignment</module>
         <module>tienchin-rule</module>
         <module>tienchin-followrecord</module>
+        <module>tienchin-personalcourse</module>
     </modules>
     <packaging>pom</packaging>
 
