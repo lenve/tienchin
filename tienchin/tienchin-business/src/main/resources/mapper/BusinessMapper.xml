@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.tienchin.business.mapper.BusinessMapper">
+
+    <select id="selectBusinessList" resultType="org.javaboy.tienchin.business.domain.vo.BusinessSummary">
+        select tb.name,tb.phone,ta.user_name as owner,tb.create_time,tb.status,tb.next_time,tb.business_id from
+        tienchin_business tb left join tienchin_assignment ta on tb.business_id=ta.assign_id and ta.latest=true where
+        tb.del_flag=0 and ta.type=1
+        <if test="name!=null">
+            and tb.name=#{name}
+        </if>
+        <if test="owner!=null">
+            and ta.user_name=#{owner}
+        </if>
+        <if test="phone!=null">
+            and tb.phone=#{phone}
+        </if>
+        <if test="params.beginTime !=null and params.endTime!=null">
+            and tb.next_time between #{params.beginTime} and #{params.endTime}
+        </if>
+    </select>
+    <select id="increaseBusiness" resultType="org.javaboy.tienchin.common.core.domain.model.EchartsPoint">
+        select t2.date_str as x,if(t3.c is null,0,t3.c) as y from(
+        select @sdate:=date_add(@sdate,interval 1 day) as date_str from(
+        select @sdate:=date_add(date_format(#{params.beginTime},'%Y-%m-%d'),interval -1 day) from mysql.time_zone limit 999) t1) t2 left join (select
+        date_format(create_time,'%Y-%m-%d') as date_str,count(1) as c from tienchin_business
+        group by date_format(create_time,'%Y-%m-%d')) t3 on t2.date_str=t3.date_str where date(@sdate) &lt;=
+        date_add(date_format(#{params.endTime},'%Y-%m-%d'),interval -1 day)
+    </select>
+    <select id="totalBusiness" resultType="org.javaboy.tienchin.common.core.domain.model.EchartsPoint">
+        set @cnum:=0;
+        select t4.x,(@cnum:=@cnum+t4.y) as y from(
+        select t2.date_str as x,if(t3.c is null,0,t3.c) as y from(
+        select @sdate:=date_add(@sdate,interval 1 day) as date_str from(
+        select @sdate:=date_add(date_format(#{params.beginTime},'%Y-%m-%d'),interval -1 day) from mysql.time_zone limit 999) t1) t2 left join (select
+        date_format(create_time,'%Y-%m-%d') as date_str,count(1) as c from tienchin_business
+        group by date_format(create_time,'%Y-%m-%d')) t3 on t2.date_str=t3.date_str where date(@sdate) &lt;=
+        date_add(date_format(#{params.endTime},'%Y-%m-%d'),interval -1 day)) t4;
+    </select>
+</mapper>

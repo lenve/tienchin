@@ -90,3 +90,7 @@
   .el-submenu__icon-arrow {
   display: none;
 }
+
+.el-dropdown .el-dropdown-link{
+  color: var(--el-color-primary) !important;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.tienchin.channel.mapper.ChannelMapper">
+
+    <select id="selectChannelList" resultType="org.javaboy.tienchin.channel.domain.Channel">
+        select * from tienchin_channel where del_flag=0
+        <if test="channelName!=null">
+            and channel_name=#{channelName}
+        </if>
+        <if test="status!=null">
+            and status=#{status}
+        </if>
+        <if test="type!=null">
+            and type=#{type}
+        </if>
+        <if test="params.beginTime!=null and params.endTime!=null">
+            and create_time between #{params.beginTime} and #{params.endTime}
+        </if>
+    </select>
+    <select id="channelAnalysisData" resultType="org.javaboy.tienchin.common.core.domain.model.PieData">
+        select t1.channel_name as name, t1.count, if(t1.count = 0, 0, t2.count2 / t1.count) as available
+        from (select tc.`channel_id`, tc.`channel_name`, count(tcl.`clue_id`) as count
+              from tienchin_channel tc left join tienchin_clue tcl
+              on tc.`channel_id`=tcl.`channel_id` and tcl.create_time between #{params.beginTime} and #{params.endTime}
+              group by tc.`channel_id`) t1
+                 left join (select tc.`channel_id`, tc.`channel_name`, count(tcl.`clue_id`) as count2
+                            from tienchin_channel tc
+                                     left join tienchin_clue tcl on tc.`channel_id` = tcl.`channel_id` and tcl.`status`!=4 and tcl.create_time between  #{params.beginTime} and #{params.endTime}
+                            group by tc.`channel_id`) t2 on t1.channel_id = t2.channel_id;
+    </select>
+</mapper>

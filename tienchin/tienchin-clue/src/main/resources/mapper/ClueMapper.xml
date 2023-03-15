@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.tienchin.clue.mapper.ClueMapper">
+
+    <select id="selectClueList" resultType="org.javaboy.tienchin.clue.domain.vo.ClueSummary" parameterType="ClueVO">
+        select tc.clue_id,tc.name,tch.channel_name,tc.phone,tc.status,tc.create_time,tc.create_by,ta.user_name as
+        owner,tc.next_time from tienchin_clue tc left join tienchin_channel tch on tc.channel_id=tch.channel_id left
+        join tienchin_assignment ta on tc.clue_id=ta.assign_id and ta.latest=true where tc.del_flag=0 and ta.type=0
+        <if test="name!=null">
+            and tc.name=#{name}
+        </if>
+        <if test="phone!=null">
+            and tc.phone=#{phone}
+        </if>
+        <if test="channelId!=null">
+            and tc.channel_id=#{channelId}
+        </if>
+        <if test="status!=null">
+            and tc.status=#{status}
+        </if>
+        <if test="owner!=null">
+            and ta.user_name=#{owner}
+        </if>
+        <if test="params.beginTime!=null and params.endTime!=null">
+            and tc.next_time > #{params.beginTime} and tc.next_time &lt; #{params.endTime}
+        </if>
+    </select>
+    <select id="getClueDetailsByClueId" resultType="org.javaboy.tienchin.clue.domain.vo.ClueDetails">
+        select tc.clue_id,
+               tc.name,
+               tc.gender,
+               tc.age,
+               tc.weixin,
+               tc.qq,
+               tc.phone,
+               tc.level,
+               tc.subject,
+               tc.status,
+               tc.fail_count,
+               tc.next_time,
+               tch.channel_name,
+               tas.create_by   as allocator,
+               ta.name         as activity_name,
+               ta.info         as activity_info,
+               tas.user_name   as owner,
+               tas.create_time as belongTime,
+               tc.create_time
+        from tienchin_clue tc
+                 left join tienchin_activity ta on tc.activity_id = ta.activity_id
+                 left join tienchin_channel tch on tc.channel_id = tch.channel_id
+                 left join tienchin_assignment tas on tc.clue_id = tas.assign_id and tas.latest = true
+        where tc.clue_id = #{cludId}
+    </select>
+    <select id="increaseClue" resultType="org.javaboy.tienchin.common.core.domain.model.EchartsPoint">
+        select t2.date_str as x,if(t3.c is null,0,t3.c) as y from(
+        select @sdate:=date_add(@sdate,interval 1 day) as date_str from(
+        select @sdate:=date_add(date_format(#{params.beginTime},'%Y-%m-%d'),interval -1 day) from mysql.time_zone limit 999) t1) t2 left join (select
+        date_format(create_time,'%Y-%m-%d') as date_str,count(1) as c from tienchin_clue
+        <where>
+            <if test="channelId!=null">
+                and channel_id=#{channelId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+        group by date_format(create_time,'%Y-%m-%d')) t3 on t2.date_str=t3.date_str where date(@sdate) &lt;=
+        date_add(date_format(#{params.endTime},'%Y-%m-%d'),interval -1 day)
+    </select>
+    <select id="totalClue" resultType="org.javaboy.tienchin.common.core.domain.model.EchartsPoint">
+        set @cnum:=0;
+        select t4.x,(@cnum:=@cnum+t4.y) as y from(
+        select t2.date_str as x,if(t3.c is null,0,t3.c) as y from(
+        select @sdate:=date_add(@sdate,interval 1 day) as date_str from(
+        select @sdate:=date_add(date_format(#{params.beginTime},'%Y-%m-%d'),interval -1 day) from mysql.time_zone limit 999) t1) t2 left join (select
+        date_format(create_time,'%Y-%m-%d') as date_str,count(1) as c from tienchin_clue
+        <where>
+            <if test="channelId!=null">
+                and channel_id=#{channelId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+        group by date_format(create_time,'%Y-%m-%d')) t3 on t2.date_str=t3.date_str where date(@sdate) &lt;=
+        date_add(date_format(#{params.endTime},'%Y-%m-%d'),interval -1 day)) t4;
+    </select>
+</mapper>

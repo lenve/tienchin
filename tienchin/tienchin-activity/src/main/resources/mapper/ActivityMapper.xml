@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.tienchin.activity.mapper.ActivityMapper">
+
+    <select id="selectActivityList" resultType="org.javaboy.tienchin.activity.domain.vo.ActivityVO" parameterType="org.javaboy.tienchin.activity.domain.vo.ActivityVO">
+        select ta.*,tc.channel_name from tienchin_activity ta,tienchin_channel tc where tc.channel_id=ta.channel_id and
+        ta.del_flag=0 and tc.del_flag=0
+        <if test="name!=null">
+            and ta.name=#{name}
+        </if>
+        <if test="channelId!=null">
+            and tc.channel_id=#{channelId}
+        </if>
+        <if test="status!=null">
+            and ta.status=#{status}
+        </if>
+        <if test="type!=null">
+            and ta.type=#{type}
+        </if>
+    </select>
+    <select id="activityAnalysisData" resultType="org.javaboy.tienchin.common.core.domain.model.PieData">
+        select t1.name as name, t1.count, if(t1.count = 0, 0, t2.count2 / t1.count) as available
+        from (select ta.`activity_id`, ta.`name`, count(tc.`clue_id`) as count
+              from tienchin_activity ta left join tienchin_clue tc
+              on ta.`activity_id`=tc.`activity_id` and tc.create_time between #{params.beginTime} and #{params.endTime}
+              group by ta.`activity_id`) t1
+                 left join (select ta.`activity_id`, ta.`name`, count(tc.`clue_id`) as count2
+                            from tienchin_activity ta
+                                     left join tienchin_clue tc on ta.`activity_id` = tc.`activity_id` and tc.`status`!=4 and tc.create_time between #{params.beginTime} and #{params.endTime}
+                            group by ta.`activity_id`) t2 on t1.activity_id = t2.activity_id;
+    </select>
+</mapper>

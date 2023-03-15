@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.javaboy</groupId>
+        <artifactId>tienchin</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>tienchin-contract</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>21.8</version>
+            <type>pom</type>
+        </dependency>
+
+        <!-- 通用工具-->
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-business</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javaboy</groupId>
+            <artifactId>tienchin-course</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter</artifactId>
+            <version>6.7.2</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>aspose</id>
+            <name>aspose</name>
+            <url>https://repository.aspose.com/repo/</url>
+        </repository>
+    </repositories>
+</project>

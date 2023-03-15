@@ -68,7 +68,7 @@ export function addDateRange(params, dateRange, propName) {
   return search;
 }
 
-// 回显数据字典 
+// 回显数据字典
 export function selectDictLabel(datas, value) {
   if (value === undefined) {
     return "";
@@ -207,10 +207,10 @@ export function tansParams(params) {
   for (const propName of Object.keys(params)) {
     const value = params[propName];
     var part = encodeURIComponent(propName) + "=";
-    if (value !== null && typeof (value) !== "undefined") {
+    if (value !== null && value !== "" && typeof (value) !== "undefined") {
       if (typeof value === 'object') {
         for (const key of Object.keys(value)) {
-          if (value[key] !== null && typeof (value[key]) !== 'undefined') {
+          if (value[key] !== null && value[key] !== "" && typeof (value[key]) !== 'undefined') {
             let params = propName + '[' + key + ']';
             var subPart = encodeURIComponent(params) + "=";
             result += subPart + encodeURIComponent(value[key]) + "&";
@@ -222,6 +222,19 @@ export function tansParams(params) {
     }
   }
   return result
+}
+
+
+// 返回项目路径
+export function getNormalPath(p) {
+  if (p.length === 0 || !p || p == 'undefined') {
+    return p
+  };
+  let res = p.replace('//', '/')
+  if (res[res.length - 1] === '/') {
+    return res.slice(0, res.length - 1)
+  }
+  return res;
 }
 
 // 验证是否为blob格式

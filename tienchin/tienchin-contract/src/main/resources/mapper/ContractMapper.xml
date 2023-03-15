@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.tienchin.contract.mapper.ContractMapper">
+
+    <select id="geContractInfoPhone" resultType="org.javaboy.tienchin.contract.domain.vo.ContractInfo">
+        select tb.channel_id,tch.channel_name,tb.activity_id,ta.name as activity_name,tb.course_id,tc.name as course_name,tc.type,tb.name,ta.type as discount_type from tienchin_business tb left join tienchin_course tc on tb.course_id=tc.course_id left join tienchin_channel tch on tb.channel_id=tch.channel_id left join tienchin_activity ta on tb.activity_id=ta.activity_id where tb.phone=#{phone} order by tb.create_time desc;
+    </select>
+</mapper>
